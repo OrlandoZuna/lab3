@@ -16,18 +16,20 @@ router.post('/test', function(req, res, next) {
     //a. Servicio que recibirá 3 parámetros,
     //b. Responderá con número flotante
 
-router.post('/divisas', function(req, res, next) {
-    req.body["msn"] = "Por el divisas";
-    var dato1 = req.body["Original"]; //recuperar datos
-    var dato2 = req.body["Cantidad"]; //recuperar datos
-    var dato3 = req.body["Cambio"]; //recuperar datos
-    var respuesta=parseFloat(dato1)*parseFloat(dato2)*parseFloat(dato3);
+router.post('/divisas', function(request, res, next) {
+   var d= request.body["msn"] = "la divisa es en total";
+    var original = request.body='1300'; //recuperar datos
+    var cantidad = request.body='10'; //recuperar datos
+    var cambio  = request.body='1.6'; //recuperar datos
+    var respuesta=parseFloat((original)*parseFloat(cantidad))/parseFloat(cambio);
+    
     res.status(200).json({
-        dato1, 
-        dato2,
-        dato3,
+        original, 
+        cantidad,
+        cambio,
         respuesta
-    }); //mostar esos datos 
+    });
+    //res.status(200).json(d); //mostar esos datos 
     
     });
                    //Calculo de interes compuesto//
@@ -35,18 +37,20 @@ router.post('/divisas', function(req, res, next) {
     //b. Responderá con la cantidad de cliente.
 
     router.post('/interes', function(req, res, next) {
-    req.body["msn"] = "Por el divisas";
-    var dato1 = req.body["Monto"]; //recuperar datos
-    var dato2 = req.body["Interes"]; //recuperar datos
-    var dato3 = req.body["Tiempo"]; //recuperar datos
-    var respuesta=parseFloat(dato1)*Math.pow((1+parseFloat(dato2)),dato3);
+   var d= req.body["msn"] = "Por el interes";
+    var dato1 = req.body='125'; //recuperar datos
+    var dato2 = req.body='0,80'; //recuperar datos
+    var dato3 = req.body='30'; //recuperar datos
+   
+    var respuesta=parseFloat(dato1)*parseFloat(dato3)-(parseFloat(dato1)*parseFloat(dato3))*(parseFloat(dato2));
     res.status(200).json({
         dato1, 
         dato2,
         dato3,
         respuesta
     }); //mostar esos datos
-    });    
+    res.status(200).json(d);   
+});    
 
 module.exports=router;
 /*var express = require('express');
